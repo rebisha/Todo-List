@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container } from 'react-bootstrap';
 import Todo from './components/todo';
+import AddForm from './components/addForm';
 
 class App extends Component {
   state = {
@@ -19,12 +20,21 @@ class App extends Component {
     });
   }
 
+  addTodo = (todo) => {
+    todo.id = Math.random();
+    let todos = [...this.state.todos, todo];
+    this.setState({
+      todos:
+    })
+  }
+
   render() {
     return (
       <Container>
         <div className="App">
           <Todo todo={this.state.todos} deleteTodo={this.deleteTodo} />
         </div>
+        <AddForm addTodo={ this.addTodo } />
       </Container>
     );
   }
