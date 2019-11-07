@@ -23,9 +23,10 @@ class App extends Component {
   addTodo = (todo) => {
     todo.id = Math.random();
     let todos = [...this.state.todos, todo];
+
     this.setState({
-      todos:
-    })
+      todos
+    });
   }
 
   render() {
@@ -34,7 +35,7 @@ class App extends Component {
         <div className="App">
           <Todo todo={this.state.todos} deleteTodo={this.deleteTodo} />
         </div>
-        <AddForm addTodo={ this.addTodo } />
+        <AddForm addTodo={this.addTodo} />
       </Container>
     );
   }

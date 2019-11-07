@@ -15,14 +15,17 @@ class AddForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.addTodo(this.state)
+        this.setState({
+            content: ''
+        })
     }
 
     render() {
         return (
             <div>
-                <form onSubmit= { this.handleSubmit } >
+                <form onSubmit= {this.handleSubmit} >
                     <label>Add new todo:</label>
-                    <FormControl onChange= { this.handleChange } />
+                    <FormControl onChange= {this.handleChange} value={this.state.content} />
                 </form>
             </div>
         );
