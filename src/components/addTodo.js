@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { FormControl } from 'react-bootstrap';
+import CounterButton from './counterButton';
 
-class AddForm extends Component {
+class AddTodo extends Component {
     state = {
         content: ''
     }
@@ -22,14 +23,15 @@ class AddForm extends Component {
 
     render() {
         return (
-            <div>
+            <div className="mb-3">
                 <form onSubmit= {this.handleSubmit} >
                     <label>Add new todo:</label>
-                    <FormControl onChange= {this.handleChange} value={this.state.content} />
+                    <FormControl onChange= {this.handleChange} value={this.state.content} onKeyUp />
                 </form>
+                <CounterButton />
             </div>
         );
     }
 }
 
-export default AddForm;
+export default AddTodo;

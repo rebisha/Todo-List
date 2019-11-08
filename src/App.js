@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container } from 'react-bootstrap';
+import AddTodo from './components/addTodo';
 import Todo from './components/todo';
-import AddForm from './components/addForm';
 
 class App extends Component {
   state = {
@@ -35,7 +35,7 @@ class App extends Component {
         <div className="App">
           <Todo todo={this.state.todos} deleteTodo={this.deleteTodo} />
         </div>
-        <AddForm addTodo={this.addTodo} />
+        <AddTodo addTodo={this.addTodo} />
       </Container>
     );
   }
