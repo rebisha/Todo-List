@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { FormControl } from 'react-bootstrap';
-import CounterButton from './counterButton';
 
 class AddTodo extends Component {
-    state = {
-        content: ''
+    constructor(props) {
+        super(props);
+        this.state = {
+            content: '',
+        }
     }
 
+
     handleChange = (e) => {
+        this.props.incrementCount(1);
         this.setState({
-            content: e.target.value
+            content: e.target.value,
         });
     }
 
@@ -26,9 +30,8 @@ class AddTodo extends Component {
             <div className="mb-3">
                 <form onSubmit= {this.handleSubmit} >
                     <label>Add new todo:</label>
-                    <FormControl onChange= {this.handleChange} value={this.state.content} onKeyUp />
+                    <FormControl onChange= {this.handleChange} value={this.state.content}  />
                 </form>
-                <CounterButton />
             </div>
         );
     }

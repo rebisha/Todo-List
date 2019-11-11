@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import { Button } from 'react-bootstrap';
 
-function CounterButton() {
-    const [count, setCount] = useState(0);
+function CounterButton(props) {
+    const { incrementCount, count } = props;
 
-    const incrementCount = () => {
-        return setCount(count + 1);
-    }
-
-    const consoleLog = () => {
-        return console.log('hey');
+    const handleButtonClick = () => {
+        incrementCount(5);
     }
 
     return (
         <Button variant="outline-info"
-            onClick={incrementCount}
-            onKeyUp={consoleLog}
+            onClick={handleButtonClick}
         >
             Counter {count}
         </Button>

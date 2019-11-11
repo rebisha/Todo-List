@@ -3,12 +3,15 @@ import { Container } from 'react-bootstrap';
 import AddTodo from './components/addTodo';
 import Todo from './components/todo';
 
+import CounterButton from './components/counterButton';
+
 class App extends Component {
   state = {
     todos: [
       { id: 1, content: 'buy some milk' },
       { id: 2, content: 'play mario Kart' }
-    ]
+    ],
+    count: 0
   }
 
   deleteTodo = (id) => {
@@ -22,10 +25,16 @@ class App extends Component {
 
   addTodo = (todo) => {
     todo.id = Math.random();
-    let todos = [...this.state.todos, todo];
+    let addTodos = [...this.state.todos, todo];
 
     this.setState({
-      todos
+      todos: addTodos
+    });
+  }
+
+  incrementCount = (incrementValue) => {
+    this.setState({
+      count: this.state.count + incrementValue
     });
   }
 
@@ -35,7 +44,8 @@ class App extends Component {
         <div className="App">
           <Todo todo={this.state.todos} deleteTodo={this.deleteTodo} />
         </div>
-        <AddTodo addTodo={this.addTodo} />
+        <AddTodo incrementCount={this.incrementCount} addTodo={this.addTodo} />
+        <CounterButton incrementCount={this.incrementCount} count={this.state.count} />
       </Container>
     );
   }
