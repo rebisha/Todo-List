@@ -1,9 +1,7 @@
 import React  from 'react';
 import { Button } from 'react-bootstrap';
 
-function CounterButton(props) {
-    const { incrementCount, count } = props;
-
+const CounterButton = ({incrementCount, count}) => {
     const handleButtonClick = () => {
         incrementCount(5);
     }
