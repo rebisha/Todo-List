@@ -26,11 +26,12 @@ class AddTodo extends Component {
     }
 
     render() {
+        const { content } = this.state;
         return (
             <div className="mb-3">
                 <form onSubmit= {this.handleSubmit} >
                     <label>Add new todo:</label>
-                    <FormControl onChange= {this.handleChange} value={this.state.content}  />
+                    <FormControl onChange= {this.handleChange} value={content}  />
                 </form>
             </div>
         );

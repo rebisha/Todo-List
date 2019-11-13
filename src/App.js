@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Container } from 'react-bootstrap';
+
 import AddTodo from './components/addTodo';
 import CounterButton from './components/counterButton';
+import MultiSelect from './components/multiSelect';
 import StopWatch from './components/stopWatch';
 import Todo from './components/todo';
 
@@ -61,7 +63,8 @@ class App extends Component {
 
     this.setState({
       timer: 0,
-      running: false
+      running: false,
+      count: 0
     })
   }
 
@@ -83,6 +86,7 @@ class App extends Component {
         <CounterButton
           incrementCount={this.incrementCount}
           count={this.state.count}
+          handleClearClick={this.handleClearClick}
         />
 
         <StopWatch
@@ -91,6 +95,8 @@ class App extends Component {
           handleRunClick={this.handleRunClick}
           handleClearClick={this.handleClearClick}
         />
+
+        <MultiSelect />
       </Container>
     );
   }
