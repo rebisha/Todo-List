@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Container } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { CommonAction } from './redux/action';
 
 import AddTodo from './components/addTodo';
 import CounterButton from './components/counterButton';
@@ -8,14 +10,21 @@ import StopWatch from './components/stopWatch';
 import Todo from './components/todo';
 
 class App extends Component {
-  state = {
-    todos: [
-      { id: 1, content: 'buy some milk' },
-      { id: 2, content: 'play mario Kart' }
-    ],
-    count: 0,
-    timer: 0,
-    running: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: [
+        { id: 1, content: 'buy some milk' },
+        { id: 2, content: 'play mario Kart' }
+      ],
+      count: 0,
+      timer: 0,
+      running: false
+    }
+  }
+
+  componentDidMount(){
+    this.props.CommonAction(true);
   }
 
   deleteTodo = (id) => {
@@ -102,4 +111,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  state: state
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    CommonAction : (data) => dispatch(CommonAction(data))
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
