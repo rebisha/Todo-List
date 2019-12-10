@@ -8,6 +8,7 @@ import CounterButton from './components/counterButton';
 import MultiSelect from './components/multiSelect';
 import StopWatch from './components/stopWatch';
 import Todo from './components/todo';
+import Search from './components/search';
 
 class App extends Component {
   constructor(props) {
@@ -106,6 +107,7 @@ class App extends Component {
         />
 
         <MultiSelect />
+        <Search />
       </Container>
     );
   }
