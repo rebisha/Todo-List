@@ -1,49 +1,59 @@
-import React, { Component } from 'react';
+import React from 'react';
+import * as Data from '../util/index';
 import { Button, FormControl } from 'react-bootstrap';
 
-import * as Data from '../util/index';
+import ResultFound from './resultFound';
+import ResultNotFound from './resultNotFound';
 
-class Search extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          iphones: [],
-          searchterm: ' ',
-          isSearching: false
-        };
-    }
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      iphones: [],
+      searchterm: '',
+      isSearching: false
+    };
+  }
 
-    doSearch = () => {
-        var { searchterm } = this.state;
-        const iphone =  Data.getIphones(searchterm)
-        iphone.then(response =>  this.setState({ iphones: response }));
-    }
+  doSearch = () => {
+    var { searchterm } = this.state;
+    const iphone =  Data.getIphones(searchterm)
+    iphone.then(response =>  this.setState({
+      iphones: response,
+      isSearching: true
+     }));
+  }
 
-    onChange = (e) => {
-        e.preventDefault();
-        this.setState({
-            searchterm : e.target.value
-        });
-    }
+  onChange = (e) => {
+    this.setState({
+        searchterm : e.target.value
+    });
+  }
 
-    render() {
-        const { iphones, searchterm } = this.state
-        return (
-          <div className="page my-3">
-            <div className="content">
-            <label>Search Iphones</label>
-            <FormControl placeholder="Search" searchterm={ searchterm } onChange={this.onChange}/>
-              <Button variant="primary" onClick={this.doSearch}>Search</Button>
-              {iphones.length
-              ? (
-                <div>got {iphones.length} iphones</div>
-              )
-              : <div id="results">Do a search to find iphones</div>
-              }
-            </div>
+  render() {
+    const { iphones, searchterm, isSearching } = this.state
+    return (
+      <div>
+        <div className="mt-3">
+          <h2> Search Iphone </h2>
+          <FormControl placeholder="Search" onChange={this.onChange} searchterm={searchterm} />
+          <Button className="my-3" variant="primary" onClick={this.doSearch}> Search </Button>
+        </div>
+        {isSearching ? (iphones.length
+        ? (
+          <div className="result-found">
+            <ResultFound iphones={iphones}/>
           </div>
-        );
-      }
+        )
+        : <div className="result-not-found">
+            <ResultNotFound />
+          </div>
+        )
+        : <span>Loading...</span>
+        }
+      </div>
+    );
+  }
 }
 
-export default Search;
+export default App;

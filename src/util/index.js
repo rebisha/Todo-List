@@ -15,16 +15,15 @@ export const filterIphones = (iphones, searchterm) => {
 };
 
 function filterIphone(iphones, searchterm) {
-  if(iphones.color.toLowerCase().includes(searchterm)) {
+  if(iphones.color.toLowerCase().includes(searchterm.toLowerCase())) {
     return iphones;
-  } else if(iphones.capacity.toLowerCase().includes(searchterm)) {
+  } else if(iphones.capacity.toLowerCase().includes(searchterm.toLowerCase())) {
     return iphones;
-  } else if(iphones.name.toLowerCase().includes(searchterm)) {
+  } else if(iphones.name.toLowerCase().includes(searchterm.toLowerCase())) {
     return iphones;
   } else if(iphones.price === parseInt(searchterm)) {
     return iphones;
   }  else {
-    console.log('not the same');
     return false;
   }
 }
