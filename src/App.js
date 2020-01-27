@@ -9,6 +9,7 @@ import MultiSelect from './components/Multiselect/multiSelect';
 import StopWatch from './components/StopWatch/stopWatch';
 import Todo from './components/Todo/todo';
 import Search from './components/IphoneSearch/search';
+import MonsterCard from './components/MonsterCard/monsterCard';
 
 class App extends Component {
   constructor(props) {
@@ -20,12 +21,18 @@ class App extends Component {
       ],
       count: 0,
       timer: 0,
-      running: false
+      running: false,
+      monsters: [],
     }
   }
 
   componentDidMount(){
     this.props.CommonAction(true);
+    fetch(`https://jsonplaceholder.typicode.com/users`)
+                  .then(response => response.json())
+                  .then(response =>  this.setState({
+                    monsters: response,
+                }));
   }
 
   deleteTodo = (id) => {
@@ -83,10 +90,11 @@ class App extends Component {
   }
 
   render() {
+    const { todos, count, timer, running, monsters } = this.state;
     return (
       <Container>
         <div className="App">
-          <Todo todo={this.state.todos} deleteTodo={this.deleteTodo} />
+          <Todo todo={todos} deleteTodo={this.deleteTodo} />
         </div>
         <AddTodo
           incrementCount={this.incrementCount}
@@ -95,19 +103,20 @@ class App extends Component {
 
         <CounterButton
           incrementCount={this.incrementCount}
-          count={this.state.count}
+          count={count}
           handleClearClick={this.handleClearClick}
         />
 
         <StopWatch
-          timer={this.state.timer}
-          running={this.state.running}
+          timer={timer}
+          running={running}
           handleRunClick={this.handleRunClick}
           handleClearClick={this.handleClearClick}
         />
 
         <MultiSelect />
         <Search />
+        <MonsterCard monsters={monsters}/>
       </Container>
     );
   }
