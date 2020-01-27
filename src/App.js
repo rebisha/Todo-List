@@ -3,12 +3,12 @@ import { Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { CommonAction } from './redux/action';
 
-import AddTodo from './components/addTodo';
-import CounterButton from './components/counterButton';
-import MultiSelect from './components/multiSelect';
-import StopWatch from './components/stopWatch';
-import Todo from './components/todo';
-import Search from './components/search';
+import AddTodo from './components/Todo/addTodo';
+import CounterButton from './components/CounterButton/counterButton';
+import MultiSelect from './components/Multiselect/multiSelect';
+import StopWatch from './components/StopWatch/stopWatch';
+import Todo from './components/Todo/todo';
+import Search from './components/IphoneSearch/search';
 
 class App extends Component {
   constructor(props) {

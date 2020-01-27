@@ -1,11 +1,11 @@
 import React from 'react';
-import * as Data from '../util/index';
+import * as Data from '../../util/index';
 import { Button, FormControl } from 'react-bootstrap';
 
 import ResultFound from './resultFound';
 import ResultNotFound from './resultNotFound';
 
-class App extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,4 +56,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Search;
