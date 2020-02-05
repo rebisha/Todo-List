@@ -136,6 +136,7 @@ class App extends Component {
         <Search />
 
         <div className="my-4 monster-container">
+          <h1 className="monster-title text-center">Monster Rolodex</h1>
           <MonsterSearch
             onChange={this.onMonsterSearchChange}
             placeholder={"Search monsters"}
