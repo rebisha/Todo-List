@@ -9,7 +9,6 @@ import MultiSelect from "./components/Multiselect/multiSelect";
 import StopWatch from "./components/StopWatch/stopWatch";
 import Todo from "./components/Todo/todo";
 import Search from "./components/IphoneSearch/search";
-import MonsterCard from "./components/MonsterCard/monsterCard";
 import MonsterSearch from "./components/MonsterCard/monsterSearch";
 
 import "./App.css";
@@ -24,21 +23,8 @@ class App extends Component {
       ],
       count: 0,
       timer: 0,
-      running: false,
-      monsters: [],
-      searchField: ""
+      running: false
     };
-  }
-
-  componentDidMount() {
-    this.props.CommonAction(true);
-    fetch(`https://jsonplaceholder.typicode.com/users`)
-      .then(response => response.json())
-      .then(response =>
-        this.setState({
-          monsters: response
-        })
-      );
   }
 
   deleteTodo = id => {
@@ -62,12 +48,6 @@ class App extends Component {
   incrementCount = incrementValue => {
     this.setState({
       count: this.state.count + incrementValue
-    });
-  };
-
-  onMonsterSearchChange = e => {
-    this.setState({
-      searchField: e.target.value
     });
   };
 
@@ -102,10 +82,7 @@ class App extends Component {
   }
 
   render() {
-    const { todos, count, timer, running, monsters, searchField } = this.state;
-    const filterMonsters = monsters.filter(monster =>
-      monster.name.toLowerCase().includes(searchField.toLowerCase())
-    );
+    const { todos, count, timer, running } = this.state;
 
     return (
       <Container className="App">
@@ -137,11 +114,7 @@ class App extends Component {
 
         <div className="my-4 monster-container">
           <h1 className="monster-title text-center">Monster Rolodex</h1>
-          <MonsterSearch
-            onChange={this.onMonsterSearchChange}
-            placeholder={"Search monsters"}
-          />
-          <MonsterCard monsters={filterMonsters} />
+          <MonsterSearch placeholder={"Search monsters via name"} />
         </div>
       </Container>
     );
