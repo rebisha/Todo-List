@@ -1,11 +1,11 @@
-export const getIphones = (searchterm) => {
+export const getIphones = searchterm => {
   // use the fetch API to load iphones.json to iphones variable
-return  fetch('/iphones.json')
-          .then(response =>  response.json())
-          .then(parsedJson => {
-            const iphones = parsedJson;
-            return filterIphones(iphones, searchterm);
-          });
+  return fetch("/iphones.json")
+    .then(response => response.json())
+    .then(parsedJson => {
+      const iphones = parsedJson;
+      return filterIphones(iphones, searchterm);
+    });
 };
 
 export const filterIphones = (iphones, searchterm) => {
@@ -15,15 +15,17 @@ export const filterIphones = (iphones, searchterm) => {
 };
 
 function filterIphone(iphones, searchterm) {
-  if(iphones.color.toLowerCase().includes(searchterm.toLowerCase())) {
+  if (iphones.color.toLowerCase().includes(searchterm.toLowerCase())) {
     return iphones;
-  } else if(iphones.capacity.toLowerCase().includes(searchterm.toLowerCase())) {
+  } else if (
+    iphones.capacity.toLowerCase().includes(searchterm.toLowerCase())
+  ) {
     return iphones;
-  } else if(iphones.name.toLowerCase().includes(searchterm.toLowerCase())) {
+  } else if (iphones.name.toLowerCase().includes(searchterm.toLowerCase())) {
     return iphones;
-  } else if(iphones.price === parseInt(searchterm)) {
+  } else if (iphones.price === parseInt(searchterm)) {
     return iphones;
-  }  else {
+  } else {
     return false;
   }
 }
